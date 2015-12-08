@@ -1,9 +1,3 @@
 <?php
-
-
-
-
-
-
-
+include 'login.php';
 ?>

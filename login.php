@@ -1,7 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexandru.cardos
- * Date: 12/8/2015
- * Time: 3:37 PM
- */
+$con = mysql_connect('localhost','test','test','baza de date');
+
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+?>
