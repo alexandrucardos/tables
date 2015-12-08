@@ -10,13 +10,16 @@
 </body>
 <?php
 include '.ignore/login.php';
-$test = "select * from taskuri";
+$test = "SELECT * FROM cadouri";
 $result =$con->query($test);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["idTask"]. " - Name: " . $row["numeTask"]. "<br>";
+        echo "<td>";
+        echo "<tr>Nume:---" . $row["nume"]."</tr>".
+            "<tr>--------" . $row["cadou"]."</tr>"."<br>";
+        echo "</td>";
     }
 } else {
     echo "0 results";
