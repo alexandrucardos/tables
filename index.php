@@ -7,6 +7,6 @@
 </td>
 </body>
 <?php
-include '.gitignore/login.php';
+include '.ignore/login.php';
 ?>
 
