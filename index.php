@@ -7,7 +7,7 @@
         border-collapse: collapse;
     }
     .thick_line_column{
-        width: 10%;
+        width: 30%;
         border: 2px solid ;
     }
     .red_cell{
