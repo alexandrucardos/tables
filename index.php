@@ -2,6 +2,7 @@
 <body>
 <style>
     table,tr,td{
+        font-size: 20px;
         width: 100%;
         border: 1px solid black;
         border-collapse: collapse;
