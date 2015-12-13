@@ -1,8 +1,9 @@
 <html>
 <body>
-
-Welcome <?php echo $_POST["name"]; ?><br>
-Your email address is: <?php echo $_POST["email"]; ?>
-
+<?php include '.ignore/login.php'; ?>
+Welcome <?php echo $_POST["name"];
+$insert = 'INSERT INTO test2(id) VALUES ("'.$_POST["name"].'");';
+$update = $con->query($insert);
+?><br>
 </body>
 </html>
