@@ -25,6 +25,7 @@
 </body>
 <?php
 include '.ignore/login.php';
+/*
 $test = "SELECT * FROM cadouri";
 $result =$con->query($test);
 echo'<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 ">';
@@ -45,6 +46,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 };
+*/
 ?>
 <?
 $proiecte_saptamanale = "SELECT  pnotlog.idProiect, pnotlog.numeProiect,  COALESCE(plog.Timp_minute,0) AS 'Timp logat' , pnotlog.Timp_necesar_minute - COALESCE(plog.Timp_minute, 0) AS 'Timp ramas' , (case when pnotlog.Timp_necesar_minute - COALESCE(plog.Timp_minute, 0)<=0 then 'Done' else NULL end) as 'Finalizate'
