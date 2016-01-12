@@ -8,6 +8,10 @@
         margin-left: auto;
         margin-right: auto;
     }
+    .proiecte_saptamanale{
+        margin-top: 60px;
+    }
+
 </style>
 <div class="div_main">
 <h1>
@@ -56,9 +60,12 @@ LEFT JOIN
 		) plog ON plog.idProiect = pnotlog.idProiect
 WHERE pnotlog.StatusCompletare IN (2);";
 $proiecte_qry = $con->query($proiecte_saptamanale);
-echo'<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 ">';
+echo'<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale">';
 while($proiecte_fetch=$proiecte_qry->fetch_assoc()) {
-    echo "<tr>";
+    echo "<tr";
+        if($proiecte_fetch['Timp ramas']<=0)
+        {echo ' class = "success"';}
+    echo ">";
     echo "<td>".$proiecte_fetch['idProiect']."</td>";
     echo "<td>".$proiecte_fetch['numeProiect']."</td>";
     echo "<td><strong>".$proiecte_fetch['Timp ramas']."</strong></td>";
