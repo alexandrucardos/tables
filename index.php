@@ -3,48 +3,26 @@
 </head>
 <body>
 <style>
-    .div_main{
+
+    .div_main {
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 10px;
     }
-    .proiecte_saptamanale{
+
+    .proiecte_saptamanale {
         margin-top: 60px;
     }
 
 </style>
 <div class="div_main">
-<h2>
-    Weekly projects
-</h2>
 
-</body>
 <?php
 include '.ignore/login.php';
-/*
-$test = "SELECT * FROM cadouri";
-$result =$con->query($test);
-echo'<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 ">';
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo '<tr';
-        if($row["status"]==1){echo' class = "success"';}
-            elseif($row["status"]==2){echo' class="info"';}
-            else {echo' class = "danger"';}
-        echo'>';
-        echo "<td>" . $row["nume"]."</td>".
-            "<td>" . $row["cadou"]."</td>".
-        "</tr>";
-    }
-    echo"</table>";
 
-} else {
-    echo "0 results";
-};
-*/
 ?>
-<?
+<?php
 $proiecte_saptamanale = "SELECT  pnotlog.idProiect, pnotlog.numeProiect,  COALESCE(plog.Timp_minute,0) AS 'Timp logat' , pnotlog.Timp_necesar_minute - COALESCE(plog.Timp_minute, 0) AS 'Timp ramas' , (case when pnotlog.Timp_necesar_minute - COALESCE(plog.Timp_minute, 0)<=0 then 'Done' else NULL end) as 'Finalizate'
 FROM proiecte pnotlog
 LEFT JOIN
@@ -58,16 +36,48 @@ LEFT JOIN
 		) plog ON plog.idProiect = pnotlog.idProiect
 WHERE pnotlog.StatusCompletare IN (2);";
 $proiecte_qry = $con->query($proiecte_saptamanale);
-echo'<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale">';
-while($proiecte_fetch=$proiecte_qry->fetch_assoc()) {
+echo '<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale">';
+?>
+    <td><strong>
+        Weekly projects
+    </td>
+    <?php
+while ($proiecte_fetch = $proiecte_qry->fetch_assoc()) {
     echo "<tr";
-        if($proiecte_fetch['Timp ramas']<=0)
-        {echo ' class = "success"';}
+    if ($proiecte_fetch['Timp ramas'] <= 0) {
+        echo ' class = "success"';
+    }
     echo ">";
-    echo "<td>".$proiecte_fetch['idProiect']."</td>";
-    echo "<td>".$proiecte_fetch['numeProiect']."</td>";
-    echo "<td><strong>".$proiecte_fetch['Timp ramas']."</strong></td>";
+    echo "<td>" . $proiecte_fetch['idProiect'] . "</td>";
+    echo "<td>" . $proiecte_fetch['numeProiect'] . "</td>";
+    echo "<td><strong>" . $proiecte_fetch['Timp ramas'] . "</strong></td>";
 };
-
 ?>
 </div>
+
+<div class="div_car">
+
+
+<?php
+$cheltuieliMasina = "SELECT m.*, TIMESTAMPDIFF(DAY,CURDATE(),m.data_realizare_serviciu) AS days FROM masina m WHERE m.`status`=0 ORDER BY m.data_realizare_serviciu ASC ;";
+$masinaQry = $con->query($cheltuieliMasina);
+
+echo '<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale">';
+?>
+    <td><strong>
+        Car expenses
+    </td>
+    <?php
+while ($masina_qry = $masinaQry->fetch_assoc()) {
+    echo "<tr";
+    if ($masina_qry['days'] <= -1) {
+        echo ' class = "danger"';
+    }
+    echo ">";
+    echo "<td>" . $masina_qry['nume_serviciu'] . "</td>";
+    echo "<td>" . $masina_qry['data_realizare_serviciu'] . "</td>";
+    echo "<td>" . $masina_qry['days'] . "</td>";
+};
+?>
+</div>
+</body>
