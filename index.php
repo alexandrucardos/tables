@@ -14,12 +14,8 @@
 
 </style>
 <div class="div_main">
-<h1>
-    This is a list of things to buy and do
-    <br>
-</h1>
 <h2>
-    Presents for important persons
+    Weekly projects
 </h2>
 
 </body>
