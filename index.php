@@ -14,6 +14,9 @@
     .proiecte_saptamanale {
         margin-top: 60px;
     }
+    .small-text{
+	font-size: 14px
+    } 
 
 </style>
 <div class="div_main">
@@ -62,7 +65,7 @@ while ($proiecte_fetch = $proiecte_qry->fetch_assoc()) {
 $cheltuieliMasina = "SELECT m.*, TIMESTAMPDIFF(DAY,CURDATE(),m.data_realizare_serviciu) AS days FROM masina m WHERE m.`status`=0 ORDER BY m.data_realizare_serviciu ASC ;";
 $masinaQry = $con->query($cheltuieliMasina);
 
-echo '<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale">';
+echo '<table class = "table table-striped table-bordered table-responsive table-hover col-md-3 proiecte_saptamanale small-text">';
 ?>
     <td><strong>
         Car expenses
